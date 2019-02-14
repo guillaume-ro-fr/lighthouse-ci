@@ -10,6 +10,7 @@ RUN apk update && apk upgrade \
     ttf-freefont \
     chromium@edge \
     nss@edge \
+    harfbuzz@edge \
     grep \
     && rm -rf /var/lib/apt/lists/* \
     /var/cache/apk/* \
@@ -29,7 +30,8 @@ RUN npm install -g lighthouse-ci \
 USER chrome
 WORKDIR /usr/src/app
 
-ENV CHROME_PATH=/usr/bin/chromium-browser
+ENV CHROME_PATH /usr/bin/chromium-browser
+ENV CHROME_BIN /usr/bin/chromium-browser
 
 # Add Lighthouse CI entrypoint
 ENTRYPOINT ["/usr/local/bin/lighthouse-ci"]
